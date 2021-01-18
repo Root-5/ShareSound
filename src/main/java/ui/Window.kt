@@ -1,9 +1,11 @@
+package ui
+
 import javafx.application.Application
 import javafx.scene.Group
 import javafx.scene.Scene
 import javafx.stage.Stage
 
-class Window() : Application() {
+class Window : Application() {
 
     fun launch() {
         Application.launch()
