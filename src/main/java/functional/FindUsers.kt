@@ -14,7 +14,7 @@ class FindUsers(private val multicastAddress: String, private val port: Int) {
     private var lastTimeReceive: Long = 0
     private var lastSendTime: Long = 0
 
-    private var users = HashMap<String, Long>()
+    public var users = HashMap<String, Long>()
 
     init {
         socket.soTimeout = timeout
