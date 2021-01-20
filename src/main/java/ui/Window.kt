@@ -5,7 +5,7 @@ import javafx.scene.Group
 import javafx.scene.Scene
 import javafx.stage.Stage
 
-class Window : Application() {
+class Window : Application(), Runnable {
 
     fun launch() {
         Application.launch()
@@ -18,5 +18,9 @@ class Window : Application() {
         p0.title = "ShareSoundApp"
         p0.scene = scene
         p0.show()
+    }
+
+    override fun run() {
+        Application.launch()
     }
 }

@@ -3,7 +3,7 @@ package functional
 import java.net.*
 import javax.xml.crypto.Data
 
-class FindUsers(private val multicastAddress: String, private val port: Int) {
+class FindUsers(private val multicastAddress: String, private val port: Int) : Runnable {
 
     private val timeout = 1000
     private val helloString = "Hello"
@@ -21,7 +21,6 @@ class FindUsers(private val multicastAddress: String, private val port: Int) {
         address = InetSocketAddress(multicastAddress, port)
         socket.joinGroup(address, NetworkInterface.getByInetAddress(InetAddress.getLocalHost()))
         users.clear()
-        mainCycle()
     }
 
     private fun mainCycle() {
@@ -53,5 +52,9 @@ class FindUsers(private val multicastAddress: String, private val port: Int) {
     private fun sendHelloPacket() {
         socket.send(DatagramPacket(helloString.toByteArray(), helloString.toByteArray().size, address))
         lastSendTime = System.currentTimeMillis()
+    }
+
+    override fun run() {
+        mainCycle()
     }
 }
