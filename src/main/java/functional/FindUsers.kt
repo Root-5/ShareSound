@@ -14,7 +14,9 @@ class FindUsers(private val multicastAddress: String, private val port: Int) : R
     private var lastTimeReceive: Long = 0
     private var lastSendTime: Long = 0
 
-    public var users = HashMap<String, Long>()
+    companion object {
+        public var users = HashMap<String, Long>()
+    }
 
     init {
         socket.soTimeout = timeout
@@ -33,7 +35,7 @@ class FindUsers(private val multicastAddress: String, private val port: Int) : R
             {
                 if(System.currentTimeMillis() - user.value > timeout) users.remove(user.key)
             }
-            println("Number of live devices: ${users.size}")
+            //println("Number of live devices: ${users.size}")
         }
     }
 
